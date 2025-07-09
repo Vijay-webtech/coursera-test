@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListCheckOff">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping List Check Off</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .container {
+      display: flex;
+      gap: 50px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .message {
+      font-style: italic;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Shopping List Check Off</h1>
+
+  <div class="container">
+
+    <div ng-controller="ToBuyController as toBuy">
+      <h2>To Buy:</h2>
+      <p ng-if="toBuy.items.length === 0" class="message">Everything is bought!</p>
+      <ul>
+        <li ng-repeat="item in toBuy.items track by $index">
+          Buy {{item.quantity}} {{item.name}}
+          <button ng-click="toBuy.buyItem($index)">Bought</button>
+        </li>
+      </ul>
+    </div>
+
+    <div ng-controller="AlreadyBoughtController as alreadyBought">
+      <h2>Already Bought:</h2>
+      <p ng-if="alreadyBought.items.length === 0" class="message">Nothing bought yet</p>
+      <ul>
+        <li ng-repeat="item in alreadyBought.items track by $index">
+          Bought {{item.quantity}} {{item.name}}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
